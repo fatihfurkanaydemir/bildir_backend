@@ -76,6 +76,11 @@ namespace WebApi
             app.UseErrorHandlingMiddleware();
             app.UseHealthChecks("/health");
 
+            var folderName = Path.Combine("Resources", "Images");
+            var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+            if(!Directory.Exists(pathToSave))
+              Directory.CreateDirectory(pathToSave);
+
             app.UseStaticFiles();
             app.UseStaticFiles(new StaticFileOptions()
             {
