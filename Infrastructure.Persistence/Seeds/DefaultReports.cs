@@ -16,7 +16,7 @@ namespace Infrastructure.Persistence.Seeds
             {
                 Title = "Example Report",
                 Description = "This event has bad words in it's description !!!",
-                StudentId = 1,
+                StudentId = 2,
                 EventId = 1,
             };
 

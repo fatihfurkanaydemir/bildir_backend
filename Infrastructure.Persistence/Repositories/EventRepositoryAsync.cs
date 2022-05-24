@@ -36,6 +36,7 @@ namespace Infrastructure.Persistence.Repositories
                 .Include(e => e.Community)
                 .Include(e => e.Students)
                 .ThenInclude(se => se.Student)
+                .Include(e => e.Images)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .AsNoTracking()
@@ -47,6 +48,7 @@ namespace Infrastructure.Persistence.Repositories
             return await _events
                 .Where(e => e.Students.Any(se => se.StudentId == studentId))
                 .Include(e => e.Community)
+                .Include(e => e.Images)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .AsNoTracking()
