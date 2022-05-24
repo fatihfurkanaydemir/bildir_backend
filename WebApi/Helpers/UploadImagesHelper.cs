@@ -19,6 +19,8 @@ namespace WebApi.Helpers
 
       var folderName = Path.Combine("Resources", "Images");
       var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+      if(!Directory.Exists(pathToSave))
+        Directory.CreateDirectory(pathToSave);
 
       var imagesToAdd = new List<Image>();
 
