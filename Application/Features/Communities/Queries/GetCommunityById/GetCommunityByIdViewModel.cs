@@ -7,6 +7,7 @@ namespace Application.Features.Communities.Queries.GetCommunityById
 {
   public class GetCommunityByIdViewModel
   {
+    public string Id { get; set; }
     public string CreationKey { get; set; }
     public string ApplicationUserId { get; set; }
     public bool IsKeyUsed { get; set; }
