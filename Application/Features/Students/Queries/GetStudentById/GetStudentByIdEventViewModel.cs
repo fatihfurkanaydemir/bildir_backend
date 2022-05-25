@@ -13,7 +13,7 @@ namespace Application.Features.Students.Queries.GetStudentById
     public string Location { get; set; }
     public string Tags { get; set; }
     public GetStudentByIdEventViewModel EventOf { get; set; }
-    public EventStates State { get; set; }
+    public string State { get; set; }
     public DateTime Date { get; set; }
   }
 }
