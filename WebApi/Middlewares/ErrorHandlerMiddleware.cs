@@ -14,9 +14,23 @@ namespace WebApi.Middlewares
     {
         private readonly RequestDelegate _next;
 
+        public class SnakeCaseNamingPolicy : JsonNamingPolicy
+        {
+          public static SnakeCaseNamingPolicy Instance { get; } = new SnakeCaseNamingPolicy();
+
+          public override string ConvertName(string name)
+          {
+            return string.Concat(name.Select((x, i) => i > 0 && char.IsUpper(x) ? "_" + x.ToString() : x.ToString())).ToLower(); ;
+          }
+        }
+
+        private JsonSerializerOptions _jsonSerializerOptions;
+
         public ErrorHandlerMiddleware(RequestDelegate next)
         {
             _next = next;
+            _jsonSerializerOptions = new JsonSerializerOptions();
+            _jsonSerializerOptions.PropertyNamingPolicy = SnakeCaseNamingPolicy.Instance;
         }
 
         public async Task Invoke(HttpContext context)
@@ -51,7 +65,7 @@ namespace WebApi.Middlewares
                         response.StatusCode = (int)HttpStatusCode.InternalServerError;
                         break;
                 }
-                var result = JsonSerializer.Serialize(responseModel);
+                var result = JsonSerializer.Serialize(responseModel, _jsonSerializerOptions);
 
                 await response.WriteAsync(result);
             }

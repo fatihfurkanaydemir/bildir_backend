@@ -36,10 +36,11 @@ namespace Application.Features.Students.Commands.AddFollowedCommunity
 
     public async Task<Response<int>> Handle(AddFollowedCommunityCommand request, CancellationToken cancellationToken)
     {
+      //if (_authenticatedUserService.UserId == null) throw new ApiException("User not logged in");
+
       var community = await _communityRepository.GetByIdAsync(request.CommunityId);
       if (community == null) throw new ApiException("Community not found");
 
-      // TODO: Get student by application user id
       var student = await _studentRepository.GetByIdAsync(request.StudentId);
       if (student == null) throw new ApiException("Student not found"); ;
 

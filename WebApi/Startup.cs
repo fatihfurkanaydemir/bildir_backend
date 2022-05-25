@@ -47,7 +47,7 @@ namespace WebApi
             });
             
             services.AddSwaggerExtension();
-            services.AddControllers();
+            //services.AddControllers();
             services.AddApiVersioningExtension();
             services.AddHealthChecks();
             services.AddScoped<IAuthenticatedUserService, AuthenticatedUserService>();

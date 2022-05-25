@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using Application.Exceptions;
+using Application.Interfaces;
 using Application.Interfaces.Repositories;
 using Application.Wrappers;
 using AutoMapper;
@@ -13,6 +14,7 @@ namespace Application.Features.Communities.Commands.AddSocialMediaLinkToCommunit
 {
   public partial class AddSocialMediaLinkToPersonnelCommand : IRequest<Response<int>>
   {
+    public int Id { get; set; }
     public string? InstagramLink { get; set; }
     public string? TwitterLink { get; set; }
     public string? FacebookLink { get; set; }
@@ -35,7 +37,9 @@ namespace Application.Features.Communities.Commands.AddSocialMediaLinkToCommunit
 
     public async Task<Response<int>> Handle(AddSocialMediaLinkToPersonnelCommand request, CancellationToken cancellationToken)
     {
-      var community = await _communityRepository.GetCommunityByApplicationUserIdAsync(_authenticatedUserService.UserId);
+      if (_authenticatedUserService.UserId == null) throw new ApiException("User not logged in");
+
+      var community = await _communityRepository.GetByIdAsync(request.Id);
       if (community == null) return null;
 
       community.InstagramLink = request.InstagramLink;
