@@ -42,7 +42,11 @@ namespace Application.Features.Students.Queries.GetAllStudents
           followedCommunities.Add(_mapper.Map<GetAllStudentsCommunityViewModel>(sc.Community));
 
         foreach (var se in s.Events)
-          participatedEvents.Add(_mapper.Map<GetAllStudentsEventViewModel>(se.Event));
+        {
+          var eventObj = _mapper.Map<GetAllStudentsEventViewModel>(se.Event);
+          eventObj.ParticipationState = se.State.ToString();
+          participatedEvents.Add(eventObj);
+        }
 
         var student = _mapper.Map<GetAllStudentsViewModel>(s);
         student.FollowedCommunities = followedCommunities;

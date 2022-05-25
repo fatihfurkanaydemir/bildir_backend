@@ -14,6 +14,7 @@ namespace Application.Features.Students.Queries.GetStudentById
     public string Tags { get; set; }
     public GetStudentByIdEventViewModel EventOf { get; set; }
     public string State { get; set; }
+    public string ParticipationState { get; set; }
     public DateTime Date { get; set; }
   }
 }

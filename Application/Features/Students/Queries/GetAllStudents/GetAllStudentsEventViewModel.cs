@@ -14,6 +14,7 @@ namespace Application.Features.Students.Queries.GetAllStudents
     public string Tags { get; set; }
     public GetAllStudentsCommunityViewModel EventOf { get; set; }
     public string State { get; set; }
+    public string ParticipationState { get; set; }
     public DateTime Date { get; set; }
   }
 }
