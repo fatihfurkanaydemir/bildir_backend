@@ -22,11 +22,13 @@ namespace Application.Features.Events.Queries.GetEventsByStudentId
   {
     private readonly IEventRepositoryAsync _eventRepository;
     private readonly IStudentRepositoryAsync _studentRepository;
+    private readonly IStudentEventRepositoryAsync _studentEventRepository;
     private readonly IMapper _mapper;
-    public GetEventsByStudentIdQueryHandler(IEventRepositoryAsync eventRepository, IStudentRepositoryAsync studentRepository, IMapper mapper)
+    public GetEventsByStudentIdQueryHandler(IEventRepositoryAsync eventRepository, IStudentRepositoryAsync studentRepository, IStudentEventRepositoryAsync studentEventRepository, IMapper mapper)
     {
       _eventRepository = eventRepository;
       _studentRepository = studentRepository;
+      _studentEventRepository = studentEventRepository;
       _mapper = mapper;
     }
 
@@ -47,8 +49,10 @@ namespace Application.Features.Events.Queries.GetEventsByStudentId
       {
         var eventObj = _mapper.Map<GetEventsByStudentIdViewModel>(e);
         var community = _mapper.Map<GetEventsByStudentIdCommunityViewModel>(e.Community);
+        var studentEvent = await _studentEventRepository.GetStudentEventByCompositePKAsync(student.Id, e.Id);
 
         eventObj.EventOf = community;
+        eventObj.ParticipationState = studentEvent.State.ToString();
 
         eventsViewModels.Add(eventObj);
       }

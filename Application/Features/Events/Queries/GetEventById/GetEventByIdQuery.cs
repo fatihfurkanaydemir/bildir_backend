@@ -35,8 +35,12 @@ namespace Application.Features.Events.Queries.GetEventById
       var community = _mapper.Map<GetEventByIdCommunityViewModel>(eventObj.Community);
       var participants = new List<GetEventByIdStudentViewModel>();
 
-      foreach (var s in eventObj.Students)
-        participants.Add(_mapper.Map<GetEventByIdStudentViewModel>(s.Student));
+      foreach (var se in eventObj.Students)
+      {
+        var student = _mapper.Map<GetEventByIdStudentViewModel>(se.Student);
+        student.ParticipationState = se.State.ToString();
+        participants.Add(student);
+      }
 
       eventViewModel.EventOf = community;
       eventViewModel.Participants = participants;

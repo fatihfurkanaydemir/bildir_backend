@@ -19,5 +19,7 @@ namespace Application.Interfaces
         Task<Response<string>> ConfirmEmailAsync(string userId, string code);
         Task ForgotPassword(ForgotPasswordRequest model, string origin);
         Task<Response<string>> ResetPassword(ResetPasswordRequest model);
+        Task<Response<string>> DeleteStudentAsync(DeleteUserRequest model, string origin, IMediator Mediator);
+        Task<Response<string>> DeleteCommunityAsync(DeleteUserRequest model, string origin, IMediator Mediator);
     }
 }

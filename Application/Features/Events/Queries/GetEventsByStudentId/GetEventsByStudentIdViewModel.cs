@@ -14,6 +14,7 @@ namespace Application.Features.Events.Queries.GetEventsByStudentId
     public string Location { get; set; }
     public string Tags { get; set; }
     public GetEventsByStudentIdCommunityViewModel EventOf { get; set; }
+    public string ParticipationState { get; set; }
     public ICollection<Image> Images { get; set; }
     public string State { get; set; }
     public DateTime Date { get; set; }

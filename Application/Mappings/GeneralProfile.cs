@@ -30,6 +30,8 @@ using Application.Features.Notifications.Queries.GetAllNotificationsByCommunityI
 //report
 using Application.Features.Reports.Commands.CreateReport;
 using Application.Features.Reports.Queries.GetAllReports;
+using Application.Features.Students.Queries.GetStudentByApplicationUserId;
+using Application.Features.Communities.Queries.GetCommunityByApplicationUserId;
 
 namespace Application.Mappings
 {
@@ -43,8 +45,10 @@ namespace Application.Mappings
             CreateMap<GetAllStudentsQuery, GetAllStudentsParameter>();
             CreateMap<Student, GetLoggedInStudentViewModel>().ReverseMap();
             CreateMap<Student, GetStudentByIdViewModel>().ReverseMap();
+            CreateMap<Student, GetStudentByApplicationUserIdViewModel>().ReverseMap();
             CreateMap<Student, GetAllCommunitiesStudentViewModel>();
             CreateMap<Student, GetCommunityByIdStudentViewModel>();
+            CreateMap<Student, GetCommunityByApplicationUserIdStudentViewModel>();
             CreateMap<Student, GetLoggedInCommunityStudentViewModel>();
             CreateMap<Student, GetAllEventsStudentViewModel>();
             CreateMap<Student, GetEventByIdStudentViewModel>();
@@ -55,9 +59,11 @@ namespace Application.Mappings
             CreateMap<UpdateCommunityCommand, Community>();
             CreateMap<GetAllCommunitiesQuery, GetAllCommunitiesParameter>();
             CreateMap<Community, GetLoggedInCommunityViewModel>().ReverseMap();
+            CreateMap<Community, GetCommunityByApplicationUserIdViewModel>().ReverseMap();
             CreateMap<Community, GetAllCommunitiesViewModel>().ReverseMap();
             CreateMap<Community, GetAllStudentsCommunityViewModel>();
             CreateMap<Community, GetStudentByIdCommunityViewModel>();
+            CreateMap<Community, GetStudentByApplicationUserIdCommunityViewModel>();
             CreateMap<Community, GetLoggedInStudentCommunityViewModel>();
             CreateMap<Community, GetAllEventsCommunityViewModel>();
             CreateMap<Community, GetEventsByStudentIdCommunityViewModel>();
@@ -73,9 +79,11 @@ namespace Application.Mappings
             CreateMap<Event, GetEventsByStudentIdViewModel>();
             CreateMap<Event, GetAllStudentsEventViewModel>();
             CreateMap<Event, GetLoggedInStudentEventViewModel>();
+            CreateMap<Event, GetStudentByApplicationUserIdEventViewModel>();
             CreateMap<Event, GetStudentByIdEventViewModel>();
             CreateMap<Event, GetAllCommunitiesEventViewModel>();
             CreateMap<Event, GetLoggedInCommunityEventViewModel>();
+            CreateMap<Event, GetCommunityByApplicationUserIdEventViewModel>();
             CreateMap<Event, GetCommunityByIdEventViewModel>();
             CreateMap<Event, GetAllReportsEventViewModel>();
 

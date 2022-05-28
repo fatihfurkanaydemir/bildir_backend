@@ -7,7 +7,7 @@ namespace Application.Features.Communities.Queries.GetAllCommunities
 {
   public class GetAllCommunitiesViewModel
   {
-    public string Id { get; set; }
+    public int Id { get; set; }
     public string CreationKey { get; set; }
     public string ApplicationUserId { get; set; }
     public bool IsKeyUsed { get; set; }

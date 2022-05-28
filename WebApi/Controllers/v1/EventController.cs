@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Helpers;
 using Microsoft.AspNetCore.Http;
+using Application.Features.Events.Commands.DeleteEvent;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -52,7 +53,15 @@ namespace WebApi.Controllers.v1
     {
       return Ok(await Mediator.Send(command));
     }
-    
+
+    //// POST api/<controller>
+    [HttpDelete]
+    //        [Authorize]
+    public async Task<IActionResult> Delete(DeleteEventCommand command)
+    {
+      return Ok(await Mediator.Send(command));
+    }
+
     //// POST api/<controller>/5
     [HttpPost("CancelEvent")]
     //        [Authorize]

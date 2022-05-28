@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Domain.Entities;
 
-namespace Application.Features.Events.Queries.GetAllEvents
+namespace Application.Features.Communities.Queries.GetCommunityByApplicationUserId
 {
-  public class GetAllEventsStudentViewModel
+  public class GetCommunityByApplicationUserIdStudentViewModel
   {
     public int Id { get; set; }
     public string FirstName { get; set; }
@@ -14,7 +13,6 @@ namespace Application.Features.Events.Queries.GetAllEvents
     public string SchoolEmail { get; set; }
     public string Faculty { get; set; }
     public string Department { get; set; }
-    public string ParticipationState { get; set; }
     public string Gender { get; set; }
   }
 }

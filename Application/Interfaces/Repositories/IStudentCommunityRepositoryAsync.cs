@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Application.Interfaces.Repositories
 {
   public interface IStudentCommunityRepositoryAsync : IGenericRepositoryAsync<StudentCommunity>
   {
+    public Task<StudentCommunity> GetStudentCommunityByCompositePKAsync(int studentId, int communityId);
   }
 }

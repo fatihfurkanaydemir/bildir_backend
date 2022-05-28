@@ -36,11 +36,23 @@ namespace WebApi.Controllers
           var origin = Request.Headers["origin"];
           return Ok(await _accountService.RegisterCommunityAsync(request, origin, Mediator));
         }
+        [HttpDelete("delete-community")]
+        public async Task<IActionResult> DeleteCommunityAsync(DeleteUserRequest request)
+        {
+          var origin = Request.Headers["origin"];
+          return Ok(await _accountService.DeleteCommunityAsync(request, origin, Mediator));
+        }
         [HttpPost("register-student")]
         public async Task<IActionResult> RegisterStudentAsync(StudentRegisterRequest request)
         {
           var origin = Request.Headers["origin"];
           return Ok(await _accountService.RegisterStudentAsync(request, origin, Mediator));
+        }
+        [HttpDelete("delete-student")]
+        public async Task<IActionResult> DeleteStudentAsync(DeleteUserRequest request)
+        {
+          var origin = Request.Headers["origin"];
+          return Ok(await _accountService.DeleteStudentAsync(request, origin, Mediator));
         }
         [HttpPost("create-community")]
         public async Task<IActionResult> CreateCommunityAsync(CommunityCreateRequest request)

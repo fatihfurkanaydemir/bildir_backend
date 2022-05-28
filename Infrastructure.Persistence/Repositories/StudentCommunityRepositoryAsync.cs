@@ -18,5 +18,11 @@ namespace Infrastructure.Persistence.Repositories
     {
       _studentCommunities = dbContext.Set<StudentCommunity>();
     }
+
+    public async Task<StudentCommunity> GetStudentCommunityByCompositePKAsync(int studentId, int communityId)
+    {
+      return await _studentCommunities
+        .SingleOrDefaultAsync(x => x.StudentId == studentId && x.CommunityId == communityId);
+    }
   }
 }

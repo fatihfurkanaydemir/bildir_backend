@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Domain.Entities;
 
-namespace Application.Features.Communities.Queries.GetCommunityById
+namespace Application.Features.Communities.Queries.GetCommunityByApplicationUserId
 {
-  public class GetCommunityByIdViewModel
+  public class GetCommunityByApplicationUserIdViewModel
   {
     public int Id { get; set; }
     public string CreationKey { get; set; }
@@ -14,8 +14,8 @@ namespace Application.Features.Communities.Queries.GetCommunityById
     public string Name { get; set; }
     public string Email { get; set; }
     public string Description { get; set; }
-    public ICollection<GetCommunityByIdStudentViewModel> Followers { get; set; }
-    public ICollection<GetCommunityByIdEventViewModel> OrganizedEvents { get; set; }
+    public ICollection<GetCommunityByApplicationUserIdStudentViewModel> Followers { get; set; }
+    public ICollection<GetCommunityByApplicationUserIdEventViewModel> OrganizedEvents { get; set; }
     public Image Avatar { get; set; }
     public Image BackgroundImage { get; set; }
     public string? InstagramLink { get; set; }

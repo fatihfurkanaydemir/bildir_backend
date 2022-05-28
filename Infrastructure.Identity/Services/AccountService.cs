@@ -24,6 +24,10 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Features.Students.Queries.GetStudentByApplicationUserId;
+using Application.Features.Students.Commands.DeleteStudent;
+using Application.Features.Communities.Queries.GetCommunityByApplicationUserId;
+using Application.Features.Communities.Commands.DeleteCommunity;
 
 namespace Infrastructure.Identity.Services
 {
@@ -177,7 +181,7 @@ namespace Infrastructure.Identity.Services
     {
 
       /*Check if mail is school mail*/
-      if(!request.SchoolEmail.EndsWith("akdeniz.edu.tr")) throw new ApiException($"Email adress is not valid");
+      //if(!request.SchoolEmail.EndsWith("akdeniz.edu.tr")) throw new ApiException($"Email adress is not valid");
 
       var user = new ApplicationUser
       {
@@ -355,6 +359,46 @@ namespace Infrastructure.Identity.Services
       else
       {
         throw new ApiException($"Error occured while reseting the password.");
+      }
+    }
+
+    public async Task<Response<string>> DeleteStudentAsync(DeleteUserRequest model, string origin, IMediator Mediator)
+    {
+      var account = await _userManager.FindByEmailAsync(model.Email);
+      if (account == null) throw new ApiException($"No Accounts Registered with {model.Email}.");
+
+      var student = await Mediator.Send(new GetStudentByApplicationUserIdQuery { ApplicationUserId = account.Id });
+      if(student == null) throw new ApiException($"No students related with {model.Email}.");
+      
+      await Mediator.Send(new DeleteStudentCommand { Id = student.Data.Id });
+      var result = await _userManager.DeleteAsync(account);
+      if (result.Succeeded)
+      {
+        return new Response<string>(model.Email, message: $"User deleted.");
+      }
+      else
+      {
+        throw new ApiException($"Error occured while deleting the user.");
+      }
+    }
+
+    public async Task<Response<string>> DeleteCommunityAsync(DeleteUserRequest model, string origin, IMediator Mediator)
+    {
+      var account = await _userManager.FindByEmailAsync(model.Email);
+      if (account == null) throw new ApiException($"No Accounts Registered with {model.Email}.");
+
+      var community = await Mediator.Send(new GetCommunityByApplicationUserIdQuery { ApplicationUserId = account.Id });
+      if (community == null) throw new ApiException($"No students related with {model.Email}.");
+
+      await Mediator.Send(new DeleteCommunityCommand { Id = community.Data.Id });
+      var result = await _userManager.DeleteAsync(account);
+      if (result.Succeeded)
+      {
+        return new Response<string>(model.Email, message: $"User deleted.");
+      }
+      else
+      {
+        throw new ApiException($"Error occured while deleting the user.");
       }
     }
   }

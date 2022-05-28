@@ -13,6 +13,7 @@ using Application.Features.Students.Commands.RegisterStudentToEvent;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Application.Features.Students.Commands.AbandonEvent;
+using Application.Features.Students.Commands.RemoveFollowedCommunity;
 
 namespace WebApi.Controllers.v1
 {
@@ -46,6 +47,14 @@ namespace WebApi.Controllers.v1
     [HttpPost("AbandonEvent")]
     //        [Authorize]
     public async Task<IActionResult> AbandonEvent(AbandonEventCommand command)
+    {
+      return Ok(await Mediator.Send(command));
+    }
+
+    // POST api/<controller>/RemoveFollowedCommunity
+    [HttpPost("RemoveFollowedCommunity")]
+    //        [Authorize]
+    public async Task<IActionResult> RemoveFollowedCommunity(RemoveFollowedCommunityCommand command)
     {
       return Ok(await Mediator.Send(command));
     }
