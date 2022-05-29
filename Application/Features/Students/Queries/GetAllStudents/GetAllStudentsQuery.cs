@@ -44,6 +44,7 @@ namespace Application.Features.Students.Queries.GetAllStudents
         foreach (var se in s.Events)
         {
           var eventObj = _mapper.Map<GetAllStudentsEventViewModel>(se.Event);
+          eventObj.EventOf = _mapper.Map <GetAllStudentsCommunityViewModel> (se.Event.Community);
           eventObj.ParticipationState = se.State.ToString();
           participatedEvents.Add(eventObj);
         }

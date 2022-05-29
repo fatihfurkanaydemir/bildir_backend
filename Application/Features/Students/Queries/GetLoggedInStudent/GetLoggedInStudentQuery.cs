@@ -43,6 +43,7 @@ namespace Application.Features.Students.Queries.GetLoggedInStudent
         foreach (var se in student.Events)
         {
           var eventObj = _mapper.Map<GetLoggedInStudentEventViewModel>(se.Event);
+          eventObj.EventOf = _mapper.Map <GetLoggedInStudentCommunityViewModel> (se.Event.Community);
           eventObj.ParticipationState = se.State.ToString();
           participatedEvents.Add(eventObj);
         }

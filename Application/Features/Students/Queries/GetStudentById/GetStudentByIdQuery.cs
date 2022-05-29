@@ -39,6 +39,7 @@ namespace Application.Features.Students.Queries.GetStudentById
         foreach (var se in student.Events)
         {
           var eventObj = _mapper.Map<GetStudentByIdEventViewModel>(se.Event);
+          eventObj.EventOf = _mapper.Map <GetStudentByIdCommunityViewModel> (se.Event.Community);
           eventObj.ParticipationState = se.State.ToString();
           participatedEvents.Add(eventObj);
         }
