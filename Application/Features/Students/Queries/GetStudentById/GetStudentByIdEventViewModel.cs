@@ -12,7 +12,7 @@ namespace Application.Features.Students.Queries.GetStudentById
     public string Description { get; set; }
     public string Location { get; set; }
     public string Tags { get; set; }
-    public GetStudentByIdEventViewModel EventOf { get; set; }
+    public GetStudentByIdCommunityViewModel EventOf { get; set; }
     public string State { get; set; }
     public string ParticipationState { get; set; }
     public DateTime Date { get; set; }
