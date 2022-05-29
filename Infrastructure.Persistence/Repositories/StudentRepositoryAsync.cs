@@ -33,6 +33,7 @@ namespace Infrastructure.Persistence.Repositories
         .ThenInclude(sc => sc.Community)
         .Include(s => s.Events)
         .ThenInclude(se => se.Event)
+        .ThenInclude(e => e.Community)
         .SingleOrDefaultAsync(x => x.Id == id);
     }
 
@@ -43,6 +44,7 @@ namespace Infrastructure.Persistence.Repositories
         .ThenInclude(sc => sc.Community)
         .Include(s => s.Events)
         .ThenInclude(se => se.Event)
+        .ThenInclude(e => e.Community)
         .SingleOrDefaultAsync(s => s.ApplicationUserId == applicationUserId);
     }
 
@@ -53,6 +55,7 @@ namespace Infrastructure.Persistence.Repositories
         .ThenInclude(sc => sc.Community)
         .Include(s => s.Events)
         .ThenInclude(se => se.Event)
+        .ThenInclude(e => e.Community)
         .Skip((pageNumber - 1) * pageSize)
         .Take(pageSize)
         .AsNoTracking()
