@@ -183,6 +183,7 @@ namespace Infrastructure.Identity.Services
       /*Check if mail is school mail*/
       //if(!request.SchoolEmail.EndsWith("akdeniz.edu.tr")) throw new ApiException($"Email adress is not valid");
 
+      
       var user = new ApplicationUser
       {
         Email = request.SchoolEmail,
@@ -196,7 +197,7 @@ namespace Infrastructure.Identity.Services
         if (result.Succeeded)
         {
           await _userManager.AddToRoleAsync(user, Roles.Student.ToString());
-          var verificationUri = await SendVerificationEmail(user, origin);
+          //var verificationUri = await SendVerificationEmail(user, origin);
           // Attach Email Service here and configure it via appsettings
           //await _emailService.SendAsync(new Application.DTOs.Email.EmailRequest() { From = "mail@codewithmukesh.com", To = user.Email, Body = $"Please confirm your account by visiting this URL {verificationUri}", Subject = "Confirm Registration" });
 
@@ -213,7 +214,8 @@ namespace Infrastructure.Identity.Services
           });
 
           if (!createStudentResult.Succeeded) throw new ApiException($"Student could not be created");
-          return new Response<string>(user.Id, message: $"User Registered. Please confirm your account by visiting this URL {verificationUri}");
+          // return new Response<string>(user.Id, message: $"User Registered. Please confirm your account by visiting this URL {verificationUri}");
+          return new Response<string>(user.Id, message: $"User Registered.");
         }
         else
         {
