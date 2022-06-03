@@ -49,7 +49,7 @@ namespace WebApi
 
             services.Configure<IdentityOptions>(options =>
             {
-                options.User.AllowedUserNameCharacters = "abcçdefgğhıijklmnoöprsştuüvyzxqwABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZXQW-._@+";
+                options.User.AllowedUserNameCharacters = "abcçdefgğhıijklmnoöprsştuüvyzxqwABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZXQW-._@+1234567890";
             });
             
             services.AddSwaggerExtension();
