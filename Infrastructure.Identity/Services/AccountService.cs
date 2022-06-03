@@ -122,7 +122,7 @@ namespace Infrastructure.Identity.Services
       }
     }
 
-    public async Task<Response<string>> RegisterCommunityAsync(CommunityRegisterRequest request, string origin, IMediator Mediator)
+    public async Task<Response<int>> RegisterCommunityAsync(CommunityRegisterRequest request, string origin, IMediator Mediator)
     {
       /*
        Check if the CreationKey is valid
@@ -165,7 +165,7 @@ namespace Infrastructure.Identity.Services
 
           if (!updateCommunityResult.Succeeded) throw new ApiException($"Community could not be updated");
           // return new Response<string>(user.Id, message: $"User Registered. Please confirm your account by visiting this URL {verificationUri}");
-          return new Response<string>(user.Id, message: $"User Registered.");
+          return new Response<int>(community.Id, message: $"User Registered.");
         }
         else
         {
