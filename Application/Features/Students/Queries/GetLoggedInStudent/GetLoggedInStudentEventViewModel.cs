@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Domain.Entities;
 
 namespace Application.Features.Students.Queries.GetLoggedInStudent
 {
@@ -16,5 +17,6 @@ namespace Application.Features.Students.Queries.GetLoggedInStudent
     public string State { get; set; }
     public string ParticipationState { get; set; }
     public DateTime Date { get; set; }
+    public ICollection<Image> Images { get; set; }
   }
 }
