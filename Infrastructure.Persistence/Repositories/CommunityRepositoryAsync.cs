@@ -39,6 +39,7 @@ namespace Infrastructure.Persistence.Repositories
         .Include(c => c.Avatar)
         .Include(c => c.BackgroundImage)
         .Include(c => c.Events)
+        .ThenInclude(e => e.Images)
         .SingleOrDefaultAsync(c => c.ApplicationUserId == applicationUserId);
     }
 
@@ -50,6 +51,7 @@ namespace Infrastructure.Persistence.Repositories
         .Include(c => c.Avatar)
         .Include(c => c.BackgroundImage)
         .Include(c => c.Events)
+        .ThenInclude(e => e.Images)
         .Skip((pageNumber - 1) * pageSize)
         .Take(pageSize)
         .AsNoTracking()
@@ -62,6 +64,7 @@ namespace Infrastructure.Persistence.Repositories
         .Include(c => c.Students)
         .ThenInclude(sc => sc.Student)
         .Include(c => c.Events)
+        .ThenInclude(e => e.Images)
         .Include(c => c.Avatar)
         .Include(c => c.BackgroundImage)
         .SingleOrDefaultAsync(c => c.Id == id);

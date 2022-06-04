@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Domain.Entities;
 
 namespace Application.Features.Communities.Queries.GetLoggedInCommunity
 {
@@ -13,6 +14,7 @@ namespace Application.Features.Communities.Queries.GetLoggedInCommunity
     public string Location { get; set; }
     public string Tags { get; set; }
     public string State { get; set; }
+    public ICollection<Image> Images { get; set; }
     public DateTime Date { get; set; }
   }
 }

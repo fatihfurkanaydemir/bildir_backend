@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Domain.Entities;
 
 namespace Application.Features.Communities.Queries.GetCommunityByApplicationUserId
 {
@@ -14,5 +15,6 @@ namespace Application.Features.Communities.Queries.GetCommunityByApplicationUser
     public string Tags { get; set; }
     public string State { get; set; }
     public DateTime Date { get; set; }
+    public ICollection<Image> Images { get; set; }
   }
 }
