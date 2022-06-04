@@ -31,20 +31,34 @@ namespace Infrastructure.Persistence.Repositories
       return await _students
         .Include(s => s.Communities)
         .ThenInclude(sc => sc.Community)
+        .ThenInclude(c => c.BackgroundImage)
+        .Include(s => s.Communities)
+        .ThenInclude(sc => sc.Community)
+        .ThenInclude(c => c.Avatar)
         .Include(s => s.Events)
         .ThenInclude(se => se.Event)
         .ThenInclude(e => e.Community)
+        .Include(s => s.Events)
+        .ThenInclude(se => se.Event)
+        .ThenInclude(e => e.Images)
         .SingleOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task<Student> GetStudentByApplicationUserIdWithRelationsAsync(string applicationUserId)
     {
       return await _students
-        .Include(x => x.Communities)
+        .Include(s => s.Communities)
         .ThenInclude(sc => sc.Community)
+        .ThenInclude(c => c.BackgroundImage)
+        .Include(s => s.Communities)
+        .ThenInclude(sc => sc.Community)
+        .ThenInclude(c => c.Avatar)
         .Include(s => s.Events)
         .ThenInclude(se => se.Event)
         .ThenInclude(e => e.Community)
+        .Include(s => s.Events)
+        .ThenInclude(se => se.Event)
+        .ThenInclude(e => e.Images)
         .SingleOrDefaultAsync(s => s.ApplicationUserId == applicationUserId);
     }
 
