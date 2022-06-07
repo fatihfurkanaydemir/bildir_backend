@@ -87,6 +87,7 @@ namespace WebApi
             if(!Directory.Exists(pathToSave))
               Directory.CreateDirectory(pathToSave);
 
+            app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseStaticFiles(new StaticFileOptions()
             {

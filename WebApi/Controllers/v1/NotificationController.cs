@@ -33,7 +33,7 @@ namespace WebApi.Controllers.v1
 
     //// POST api/<controller>
     [HttpPost]
-    //        [Authorize]
+    [Authorize(Roles = "Community")]
     public async Task<IActionResult> Post(CreateNotificationCommand command)
     {
       return Ok(await Mediator.Send(command));

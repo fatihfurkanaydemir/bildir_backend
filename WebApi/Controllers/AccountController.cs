@@ -7,6 +7,7 @@ using Application.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Application.Features.Communities.Commands.CreateCommunity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApi.Controllers
 {
@@ -37,6 +38,7 @@ namespace WebApi.Controllers
           return Ok(await _accountService.RegisterCommunityAsync(request, origin, Mediator));
         }
         [HttpDelete("delete-community")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteCommunityAsync(DeleteUserRequest request)
         {
           var origin = Request.Headers["origin"];
@@ -49,12 +51,14 @@ namespace WebApi.Controllers
           return Ok(await _accountService.RegisterStudentAsync(request, origin, Mediator));
         }
         [HttpDelete("delete-student")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteStudentAsync(DeleteUserRequest request)
         {
           var origin = Request.Headers["origin"];
           return Ok(await _accountService.DeleteStudentAsync(request, origin, Mediator));
         }
         [HttpPost("create-community")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateCommunityAsync(CommunityCreateRequest request)
         {
           var origin = Request.Headers["origin"];

@@ -7,6 +7,7 @@ using Application.Features.Communities.Commands.UpdateCommunity;
 using Application.Features.Communities.Commands.AddSocialMediaLinkToCommunity;
 using Application.Features.Communities.Commands.AddAvatarImage;
 using Application.Features.Communities.Commands.AddBackgroundImage;
+using Microsoft.AspNetCore.Authorization;
 
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -48,7 +49,7 @@ namespace WebApi.Controllers.v1
 
     // POST api/<controller>
     [HttpPost]
-    //        [Authorize]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Post(CreateCommunityCommand command)
     {
       return Ok(await Mediator.Send(command));
@@ -56,7 +57,7 @@ namespace WebApi.Controllers.v1
 
     // POST api/<controller>
     [HttpPost("AddSocialMediaLinkToCommunity")]
-    //        [Authorize]
+    [Authorize(Roles = "Community")]
     public async Task<IActionResult> AddSocialMediaLinkToCommunity(AddSocialMediaLinkToPersonnelCommand command)
     {
       return Ok(await Mediator.Send(command));
@@ -64,7 +65,7 @@ namespace WebApi.Controllers.v1
 
     //// POST api/<controller>/5
     [HttpPost("AddAvatarImage/{id}")]
-    //        [Authorize]
+    [Authorize(Roles = "Community")]
     public async Task<IActionResult> AddAvatarImage(int id, IFormFile file)
     {
       var images = await UploadImagesHelper.UploadImages(Request);
@@ -73,7 +74,7 @@ namespace WebApi.Controllers.v1
 
     //// POST api/<controller>/5
     [HttpPost("AddBackgroundImage/{id}")]
-    //        [Authorize]
+    [Authorize(Roles = "Community")]
     public async Task<IActionResult> AddBackgroundImage(int id, IFormFile file)
     {
       var image = await UploadImagesHelper.UploadImages(Request);
@@ -82,7 +83,7 @@ namespace WebApi.Controllers.v1
 
     // PUT api/<controller>/5
     [HttpPut("{id}")]
-    //[Authorize]
+    [Authorize(Roles = "Community")]
     public async Task<IActionResult> Put(int id, UpdateCommunityCommand command)
     {
       if (id != command.Id)

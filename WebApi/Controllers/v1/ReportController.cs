@@ -26,7 +26,7 @@ namespace WebApi.Controllers.v1
 
     //// POST api/<controller>
     [HttpPost]
-    //        [Authorize]
+    [Authorize(Roles = "Student")]
     public async Task<IActionResult> Post(CreateReportCommand command)
     {
       return Ok(await Mediator.Send(command));
@@ -34,7 +34,7 @@ namespace WebApi.Controllers.v1
 
     //// POST api/<controller>
     [HttpPost("SolveReport")]
-    //        [Authorize]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Post(SolveReportCommand command)
     {
       return Ok(await Mediator.Send(command));
