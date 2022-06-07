@@ -41,7 +41,7 @@ namespace WebApi.Controllers.v1
 
     // GET api/<controller>/GetEventsByStudentId/5
     [HttpGet("GetEventsByStudentId/{studentId}")]
-    [Authorize(Roles = "Student")]
+    //[Authorize(Roles = "Student")]
     public async Task<IActionResult> Get([FromQuery] GetEventsByStudentIdParameter filter, int studentId)
     {
       return Ok(await Mediator.Send(new GetEventsByStudentIdQuery { StudentId = studentId, PageSize = filter.PageSize, PageNumber = filter.PageNumber}));
@@ -49,7 +49,7 @@ namespace WebApi.Controllers.v1
 
     //// POST api/<controller>
     [HttpPost]
-    [Authorize(Roles = "Community")]
+    //[Authorize(Roles = "Community")]
     public async Task<IActionResult> Post(CreateEventCommand command)
     {
       return Ok(await Mediator.Send(command));
@@ -57,7 +57,7 @@ namespace WebApi.Controllers.v1
 
     //// POST api/<controller>
     [HttpDelete]
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(DeleteEventCommand command)
     {
       return Ok(await Mediator.Send(command));
@@ -65,7 +65,7 @@ namespace WebApi.Controllers.v1
 
     //// POST api/<controller>/5
     [HttpPost("CancelEvent")]
-    [Authorize(Roles = "Community")]
+    //[Authorize(Roles = "Community")]
     public async Task<IActionResult> CancelEvent(CancelEventCommand command)
     {
       return Ok(await Mediator.Send(command));
@@ -73,7 +73,7 @@ namespace WebApi.Controllers.v1
 
     //// POST api/<controller>/5
     [HttpPost("EndEvent")]
-    [Authorize(Roles = "Community")]
+    //[Authorize(Roles = "Community")]
     public async Task<IActionResult> EndEvent(EndEventCommand command)
     {
       return Ok(await Mediator.Send(command));
@@ -81,7 +81,7 @@ namespace WebApi.Controllers.v1
 
     //// POST api/<controller>/5
     [HttpPost("AddImagesToEvent/{id}")]
-    [Authorize(Roles = "Community")]
+    //[Authorize(Roles = "Community")]
     public async Task<IActionResult> EndEvent(int id, ICollection<IFormFile> files)
     {
       var images = await UploadImagesHelper.UploadImages(Request);
@@ -106,7 +106,7 @@ namespace WebApi.Controllers.v1
 
     // PUT api/<controller>/5
     [HttpPut("{id}")]
-    [Authorize(Roles = "Community")]
+    //[Authorize(Roles = "Community")]
     public async Task<IActionResult> Put(int id, UpdateEventCommand command)
     {
       if (id != command.Id)

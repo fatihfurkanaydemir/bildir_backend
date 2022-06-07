@@ -29,7 +29,7 @@ namespace WebApi.Controllers.v1
 
     // POST api/<controller>/AddFollowedCommunity
     [HttpPost("AddFollowedCommunity")]
-    [Authorize(Roles = "Student")]
+    //[Authorize(Roles = "Student")]
     public async Task<IActionResult> AddFollowedCommunity(AddFollowedCommunityCommand command)
     {
       return Ok(await Mediator.Send(command));
@@ -37,7 +37,7 @@ namespace WebApi.Controllers.v1
     
     // POST api/<controller>/RegisterToEvent
     [HttpPost("RegisterToEvent")]
-    [Authorize(Roles = "Student")]
+    //[Authorize(Roles = "Student")]
     public async Task<IActionResult> RegisterToEvent(RegisterStudentToEventCommand command)
     {
       return Ok(await Mediator.Send(command));
@@ -45,7 +45,7 @@ namespace WebApi.Controllers.v1
 
     // POST api/<controller>/AbandonEvent
     [HttpPost("AbandonEvent")]
-    [Authorize(Roles = "Student")]
+    //[Authorize(Roles = "Student")]
     public async Task<IActionResult> AbandonEvent(AbandonEventCommand command)
     {
       return Ok(await Mediator.Send(command));
@@ -53,7 +53,7 @@ namespace WebApi.Controllers.v1
 
     // POST api/<controller>/RemoveFollowedCommunity
     [HttpPost("RemoveFollowedCommunity")]
-    [Authorize(Roles = "Student")]
+    //[Authorize(Roles = "Student")]
     public async Task<IActionResult> RemoveFollowedCommunity(RemoveFollowedCommunityCommand command)
     {
       return Ok(await Mediator.Send(command));
@@ -92,7 +92,7 @@ namespace WebApi.Controllers.v1
 
     // PUT api/<controller>/5
     [HttpPut("{applicationUserId}")]
-    [Authorize(Roles = "Student")]
+    //[Authorize(Roles = "Student")]
     public async Task<IActionResult> Put(string applicationUserId, UpdateStudentCommand command)
     {
       if (applicationUserId != command.ApplicationUserId)
