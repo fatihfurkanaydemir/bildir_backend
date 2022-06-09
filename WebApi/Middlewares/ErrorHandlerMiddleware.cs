@@ -14,13 +14,13 @@ namespace WebApi.Middlewares
     {
         private readonly RequestDelegate _next;
 
-        public class SnakeCaseNamingPolicy : JsonNamingPolicy
+        public class FirstLetterLowerCaseNamingPolicy : JsonNamingPolicy
         {
-          public static SnakeCaseNamingPolicy Instance { get; } = new SnakeCaseNamingPolicy();
+          public static FirstLetterLowerCaseNamingPolicy Instance { get; } = new FirstLetterLowerCaseNamingPolicy();
 
           public override string ConvertName(string name)
           {
-            return string.Concat(name.Select((x, i) => i > 0 && char.IsUpper(x) ? "_" + x.ToString() : x.ToString())).ToLower(); ;
+            return name[0].ToString().ToLower() + name.Substring(1);
           }
         }
 
@@ -30,7 +30,7 @@ namespace WebApi.Middlewares
         {
             _next = next;
             _jsonSerializerOptions = new JsonSerializerOptions();
-            _jsonSerializerOptions.PropertyNamingPolicy = SnakeCaseNamingPolicy.Instance;
+            _jsonSerializerOptions.PropertyNamingPolicy = FirstLetterLowerCaseNamingPolicy.Instance;
         }
 
         public async Task Invoke(HttpContext context)
