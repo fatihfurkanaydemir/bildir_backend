@@ -1,39 +1,35 @@
-# UML Diagram
-[link](https://lucid.app/lucidchart/79f9579e-1ca7-4001-b997-ed6370dc4f84/edit?invitationId=inv_7f64af1d-9afa-4cca-b938-6356c8ba8eeb)
+# Bildir Backend
 
-# Perfect Commit   
-***Don't commit all changes in one message, seperate them by choosing the files are changed.***
+This project is the backend server of Bildir app. Bildir is an application which offers school communities to publish their events with images etc. Students can view and join these events. Students can follow communities and see their events on top of others. Students can discover all events and communities. This project consist of three parts. Backend server was built with .NET and PostgreSQL, web application was built with ReactJs, mobile application was built with React Native.
 
-- Add specific file 
-```git add Commands/CreateProduct/CreateProductCommand.cs```  
+Backend server uses the boilerplate code from [fullstackhero.net](https://fullstackhero.net) which is based on .NET 5.
 
-- If you want to add only some changes in CreateProductCommand.cs
-```git add -p CreateProductCommand.cs``` -p Stands for 'partialy'. Then git will ask you the parts you want to add.
+# Deployed project
 
-## Perfect commit message
-The commit message consists of 2 parts;  
+Project was deployed to Azure and ElephantSQL for demonstration purposes.
 
-- Subject
-- Body
+Web app: [bildir.azurewebsites.net](https://bildir.azurewebsites.net)
 
-Leave one line space after subject, then git will know that you are typing body now.
+Swagger: [bildir.azurewebsites.net/swagger](https://bildir.azurewebsites.net/swagger)
 
-* Subject: concise summary of what happened
-* Body: more detailed explanation
-	* What is now different than before?
-	* What's the reason for change?
-	* Is there anytingh to watch out for / anything particularly remarkable?
+**Important Note: When you first visit the page, it may take some tome for the azure to boot up the server.**
 
-# Branches
+# Boilerplate project specifications
 
-## Life-cycles of Branches
+- Built on .NET 5.0
+- Follows Clean Architecture Principles
+- Domain Driven Design
+- Supports MySQL, MSSQL, Oracle & PostgreSQL
+- Uses Entity Framework Core as DB Abstraction
+- Flexible Repository Pattern
+- OpenAPI – Supports Client Service Generation
+- API Versioning
+- Fluent Validations
+- Audit Logging
+- Advanced User & Role Based Permission Management
+- JWT
+- MediatR – CQRS
 
-### Long running branch (main)
-This is the branch will stay from the start to the end of the project.
-Do not commit changes to the long running branch(main) directly. First, commit them to the short living branches!
+# Entity Relationship Diagram
 
-### Short living branches (feature, bug fix, refactoring...)
-These branches should be deleted after integration (merge/rebase)
-
-## Branching Strategy
-Create a new branch and commit your work to it. After that, it will be merged with 'main' branch.
+![class_diagram](https://user-images.githubusercontent.com/31140894/176396781-c1af20ea-8fe9-4758-afd7-b7138f83c53f.png)
